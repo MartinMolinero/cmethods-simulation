@@ -100,12 +100,6 @@ def mean_variance_standardDeviation():
                "\nVarianza: "+str(variance)+
                "\nDesviación estandar: "+str(standardDeviation))
 
-def variance():
-    return 0
-
-def standardDeviation():
-    return 0
-
 def printMenu():
     print("1-Distribución Binomial\n")
     print("2-Binomial acumulativo\n")
