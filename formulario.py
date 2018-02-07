@@ -82,6 +82,29 @@ def cumulativePoisson():
         print(res)
     return str(res)
 
+def probability():
+    print('P(A) = n/N')
+    n = float(input("Introduce el valor de n: (número de  elementos del evento A): "))
+    N = float(input("Introduce el valor de N: (número de elementos de la muestra o población): "))
+    return str(n/N)
+
+def mean_variance_standardDeviation():
+    print("Introduce la lista de valores de x, separados por un espacio en blanco: ")
+    x_values = [float(x) for x in input().split()]
+    print("Introduce la lista de valores de p(x), separados por un espacio en blanco: ")
+    p_of_x_values = [float(p_x) for p_x in input().split()]
+    mean = sum([x*p_x for x,p_x in zip(x_values, p_of_x_values)])
+    variance = sum([pow((x - mean),2)*p_x for x,p_x in zip(x_values, p_of_x_values)])
+    standardDeviation = math.sqrt(variance)
+    return str("\nMedia: "+str(mean)+
+               "\nVarianza: "+str(variance)+
+               "\nDesviación estandar: "+str(standardDeviation))
+
+def variance():
+    return 0
+
+def standardDeviation():
+    return 0
 
 def printMenu():
     print("1-Distribución Binomial\n")
@@ -92,6 +115,8 @@ def printMenu():
     print("6-Factorial\n")
     print("7-Combinación\n")
     print("8-Permutación\n")
+    print("9-Probabilidad\n")
+    print("10-Media, Varianza y Desviación estandar\n")
 
 def main():
     while (1):
@@ -105,7 +130,9 @@ def main():
             5: cumulativePoisson,
             6: factorial,
             7: combination,
-            8: permutation
+            8: permutation,
+            9: probability,
+            10: mean_variance_standardDeviation
         }
 
         if choice in options:
