@@ -99,6 +99,13 @@ def mean_variance_standardDeviation():
     return str("\nMedia: "+str(mean)+
                "\nVarianza: "+str(variance)+
                "\nDesviación estandar: "+str(standardDeviation))
+    
+def exponential():
+    e = math.e
+    m = float(input("Introduce el valor de la media: "))
+    x = float(input("Introduce el valor de x: "))
+    l = (1/m)
+    return str(1-pow(e, (-l*x)))
 
 def printMenu():
     print("1-Distribución Binomial\n")
@@ -109,8 +116,9 @@ def printMenu():
     print("6-Factorial\n")
     print("7-Combinación\n")
     print("8-Permutación\n")
-    print("9-Probabilidad\n")
-    print("10-Media, Varianza y Desviación estandar\n")
+    print("9-Probabilidad uniforme\n")
+    print("10-Media, Varianza y Desviación estandar (uniforme)\n")
+    print("11-Distribución Exponencial\n")
 
 def main():
     while (1):
@@ -126,7 +134,8 @@ def main():
             7: combination,
             8: permutation,
             9: probability,
-            10: mean_variance_standardDeviation
+            10: mean_variance_standardDeviation,
+            11: exponential
         }
 
         if choice in options:
