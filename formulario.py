@@ -111,6 +111,8 @@ def printMenu():
     print("8-Permutación\n")
     print("9-Probabilidad\n")
     print("10-Media, Varianza y Desviación estandar\n")
+    print("11-Distribución Uniforme discreta\n")
+    print("12-Distribución Uniforme discreta acumulativa\n")
 
 def main():
     while (1):
@@ -126,7 +128,9 @@ def main():
             7: combination,
             8: permutation,
             9: probability,
-            10: mean_variance_standardDeviation
+            10: mean_variance_standardDeviation,
+            11: uniformDiscrete,
+            12: cumulativeUniformDiscrete
         }
 
         if choice in options:
