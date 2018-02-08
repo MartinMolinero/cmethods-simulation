@@ -60,7 +60,12 @@ def poisson():
     x = float(input("Introduce el valor de x: "))
     l = float(input("Introduce el valor de lambda: "))
     res = (pow(e, -l) * pow(l, x)) / factorial_in (x)
+    standardDeviation = math.sqrt(l)
+    print("\n \nMedia: " + str(l))
+    print("Varianza: " + str(l))
+    print("Desviación estándar: " + str(standardDeviation))
     return str(res)
+
 
 def poissonproc():
     e = math.e
@@ -69,6 +74,10 @@ def poissonproc():
     t = float(input("Introduce el valor de t (tiempo, área, etc): "))
     l = a * t
     res = (pow(e, -l) * pow(l, x)) / factorial_in (x)
+    standardDeviation = math.sqrt(l)
+    print("\n \nMedia: " + str(l))
+    print("Varianza: " + str(l))
+    print("Desviación estándar: " + str(standardDeviation))
     return str(res)
 
 def cumulativePoisson():
