@@ -53,7 +53,7 @@ def binom():
     k = float(input("Introduce el valor de k: "))
     p = float(input("Introduce el valor de p: "))
     q = float(input("Introduce el valor de q: "))
-    return str(combination_in(n, k) * pow(p,k) * pow(q,n-k)) + "\nVarianza: " +str(n*p*q) + "\nDesviación estándar:" +str( math.sqrt(n*p*q))
+    return str(combination_in(n, k) * pow(p,k) * pow(q,n-k)) + "\nModa: " + str(n*p) +  "\nVarianza: " +str(n*p*q) + "\nDesviación estándar:" +str( math.sqrt(n*p*q))
 
 def poisson():
     e = math.e
@@ -99,6 +99,7 @@ def mean_variance_standardDeviation():
     return str("\nMedia: "+str(mean)+
                "\nVarianza: "+str(variance)+
                "\nDesviación estandar: "+str(standardDeviation))
+
 
 def printMenu():
     print("1-Distribución Binomial\n")
