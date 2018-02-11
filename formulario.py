@@ -94,7 +94,7 @@ def cumulativePoisson():
 def cumulativePoissonProc():
     res = 0;
     e = math.e
-    l = float(input("Introduce el valor de alfa: "))
+    a = float(input("Introduce el valor de alfa: "))
     t = float(input("Introduce el valor de t (tiempo, área, etc): "))
     low_limit = int(input("Introduce el limite inferior: "))
     upper_limit = int(input("Introduce el limite superior: "))
