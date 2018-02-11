@@ -108,13 +108,26 @@ def mean_variance_standardDeviation():
     return str("\nMedia: "+str(mean)+
                "\nVarianza: "+str(variance)+
                "\nDesviación estandar: "+str(standardDeviation))
-    
+
 def exponential():
     e = math.e
     m = float(input("Introduce el valor de la media: "))
     x = float(input("Introduce el valor de x: "))
     l = (1/m)
     return str(1-pow(e, (-l*x)))
+
+def mvs_uniform():
+    print("Introduce la lista de valores de x, separados por un espacio en blanco: ")
+    x_values = [float(x) for x in input().split()]
+    acum = 0;
+    for i in range(len(x_values)):
+        acum += x_values[i]
+    mean = acum / len(x_values)
+    variance = sum([pow((x-mean),2)/len(x_values) for x, in zip(x_values)])
+    stdev = math.sqrt(variance)
+    return str("\nMedia: "+str(mean)+
+               "\nVarianza: "+str(variance)+
+               "\nDesviación estandar: "+str(stdev))
 
 
 def printMenu():
@@ -127,8 +140,9 @@ def printMenu():
     print("7-Combinación\n")
     print("8-Permutación\n")
     print("9-Probabilidad uniforme\n")
-    print("10-Media, Varianza y Desviación estandar (uniforme)\n")
+    print("10-Media, Varianza y Desviación estandar\n")
     print("11-Distribución Exponencial\n")
+    print("12-Media, Varianza y Desviación estandar (uniforme)\n")
 
 def main():
     while (1):
@@ -145,7 +159,8 @@ def main():
             8: permutation,
             9: probability,
             10: mean_variance_standardDeviation,
-            11: exponential
+            11: exponential,
+            12: mvs_uniform
         }
 
         if choice in options:
