@@ -168,7 +168,7 @@ def main():
             3: poisson,
             4: poissonproc,
             5: cumulativePoisson,
-            6: cumulativePoissionProc,
+            6: cumulativePoissonProc,
             7: factorial,
             8: combination,
             9: permutation,
