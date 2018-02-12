@@ -2,6 +2,13 @@
 # encoding: utf-8
 import math
 
+print("\n \n-------------------Formulario Métodos Cuantitativos.-------------------")
+print("Parcial 1.")
+print("Bot Plex")
+print("Martín Molinero")
+print("Bernardo Gómez")
+print("Bernardo Ortega \n \n")
+
 def factorial():
     n = int(input("Introduce el valor de n: "))
     return factorial_in(n)
@@ -14,7 +21,6 @@ def factorial_in(n):
         else:
             acum = acum * n
             n = n - 1
-
 
 def combination():
     n = int(input("Introduce el valor de n: "))
