@@ -97,19 +97,6 @@ def cumulativePoisson():
         print(res)
     return str(res)
 
-def cumulativePoissonProc():
-    res = 0;
-    e = math.e
-    a = float(input("Introduce el valor de alfa: "))
-    t = float(input("Introduce el valor de t (tiempo, área, etc): "))
-    low_limit = int(input("Introduce el limite inferior: "))
-    upper_limit = int(input("Introduce el limite superior: "))
-    l = a * t
-    for x in range(low_limit,upper_limit + 1):
-        res += (pow(e, -l) * pow(l, x)) / factorial_in (x)
-        print(res)
-    return str(res)
-
 def probability():
     print('P(A) = n/N')
     n = float(input("Introduce el valor de n: (número de  elementos del evento A): "))
@@ -133,7 +120,9 @@ def exponential():
     m = float(input("Introduce el valor de la media: "))
     x = float(input("Introduce el valor de x: "))
     l = (1/m)
-    return str(1-pow(e, (-l*x)))
+    v = (1/pow(l,2))
+
+    return "\nResultado: " + str(1-pow(e, (-l*x))) + "\nLambda: " + str(l)  + "\nVarianza: " + str(v) + "\n Desvesta: " + str(math.sqrt(v))
 
 def mvs_uniform():
     print("Introduce la lista de valores de x, separados por un espacio en blanco: ")
@@ -155,14 +144,13 @@ def printMenu():
     print("3-Distribución Poisson\n")
     print("4-Proceso de Poisson\n")
     print("5-Poisson acumulativo\n")
-    print("6-Proceso de Poisson acumulativo\n")
-    print("7-Factorial\n")
-    print("8-Combinación\n")
-    print("9-Permutación\n")
-    print("10-Probabilidad uniforme\n")
-    print("11-Media, Varianza y Desviación estandar\n")
-    print("12-Distribución Exponencial\n")
-    print("13-Media, Varianza y Desviación estandar (uniforme)\n")
+    print("6-Factorial\n")
+    print("7-Combinación\n")
+    print("8-Permutación\n")
+    print("9-Probabilidad uniforme\n")
+    print("10-Media, Varianza y Desviación estandar\n")
+    print("11-Distribución Exponencial\n")
+    print("12-Media, Varianza y Desviación estandar (uniforme)\n")
 
 def main():
     while (1):
@@ -174,14 +162,13 @@ def main():
             3: poisson,
             4: poissonproc,
             5: cumulativePoisson,
-            6: cumulativePoissonProc,
-            7: factorial,
-            8: combination,
-            9: permutation,
-            10: probability,
-            11: mean_variance_standardDeviation,
-            12: exponential,
-            13: mvs_uniform,
+            6: factorial,
+            7: combination,
+            8: permutation,
+            9: probability,
+            10: mean_variance_standardDeviation,
+            11: exponential,
+            12: mvs_uniform
         }
 
         if choice in options:
