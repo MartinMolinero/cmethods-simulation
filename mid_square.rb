@@ -7,7 +7,7 @@ def square(number)
 end
 
 def transform(squared, n)
-  while(squared.to_s.length < 2*n) do
+  while(squared.to_s.length < 4*n) do
     squared = '0' + squared.to_s
   end
   return squared
@@ -28,7 +28,7 @@ def method()
     squared = square(number)
     squared = transform(squared, n)
     str = return_substring(squared.to_s, n)
-    print "\n Result: " + "." + str + "\n Iteracion" + iter
+    print "\n Result: " + "." + str
     number = str.to_i
     iter = iter - 1
   end
