@@ -10,19 +10,33 @@ end
 def main_formula
   puts "M Value: "
   m = Integer($stdin.readline())
-  puts "A Value"
+  puts "A Value: "
   a = Integer($stdin.readline())
-  puts "C Value"
+  puts "C Value: "
   c = Integer($stdin.readline())
-  puts "Z Value"
-  z = Integer($stdin.readline())
-  puts "Iteration"
+  puts "Z Value: "
+  z_init = Integer($stdin.readline())
+  z = z_init
+  puts "Iterations: "
   itr = Integer($stdin.readline())
-  for i in 1..itr
+
+  #First iteration
+  z_i = recursive_formula(a,z, c,m)
+  r = r_value(z_i, m)
+  z = z_i
+  z_one = z_i
+  puts "\n\n-Iteration: 1 \n-Z: " + z.to_s + "\n-R: " +  r.to_s
+
+  #Rest of iterations
+  for i in 2..(itr -1)
     z_i = recursive_formula(a,z, c,m)
+    if (z_i == z_one)
+      puts "\n\n-Cycle length: " + (i - 1).to_s
+    break
+    end
     r = r_value(z_i, m)
     z = z_i
-    puts "\n\n Itr: " + i.to_s  + "\nZ: " + z.to_s + "\n R: " +  r.to_s
+    puts "\n\n-Iteration: " + i.to_s  + "\n-Z: " + z.to_s + "\n-R: " +  r.to_s
   end
 end
 
