@@ -11,15 +11,17 @@ def decide_max(upper, lower)
 end
 
 def function1(val)
-  (-1/6) + (val/12)
+  (-1.0/6.0) + (val/12.0)
 end
 
 def function2(val)
-  (4/3) - (val/6)
+  (4.0/3.0) - (val/6.0)
 end
 
 
 def method
+  max = -1
+  min = 10
   puts "Introduce el limite inferior de f1"
   low1 = Integer($stdin.readline(), 10)
   puts "Introduce el limite superior de f1"
@@ -48,14 +50,22 @@ def method
       f_x_star = 0
     end
 
-    if r2 <= (f_x_star/m) then
+    if r2 <= (f_x_star.to_f/m.to_f) then
       numbers.push(x_star)
+      if x_star < min
+        min = x_star
+      end
+      if x_star > max
+        max = x_star
+      end
     end
   end
   puts "Se generaron #{itr} numeros"
   perc = numbers.length.to_f / itr.to_f
-  puts "Aceptados #{perc}"
-  puts "Rechazados #{1 - perc}"
+  puts "Aceptados: #{perc}"
+  puts "Rechazados: #{1 - perc}"
+  puts "Mínimo: #{min}"
+  puts "Máximo: #{max}"
   mean = 0
   variance = 0
   numbers.each do |n|
