@@ -26,7 +26,6 @@ def method
   limit = Integer($stdin.readline(), 10)
   m = decide_max(low, high)
   numbers = []
-  puts "Max #{m}"
   while numbers.length < limit do
     r1 = rand().to_f
     r2 = rand().to_f
