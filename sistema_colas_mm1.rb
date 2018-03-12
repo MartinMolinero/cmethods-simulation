@@ -1,9 +1,9 @@
 def ls(miu, lam)
-  lam/(lam-miu)
+  lam/(miu-lam)
 end
 
 def lq(miu, lam)
-  (lam**2.0)/miu*(miu-lam)
+  (lam**2.0)/(miu*(miu-lam))
 end
 
 def ws(miu, lam)
@@ -11,7 +11,7 @@ def ws(miu, lam)
 end
 
 def wq(miu, lam)
-  lam/miu*(miu-lam)
+  lam/(miu*(miu-lam))
 end
 
 def ro(miu, lam)
@@ -43,7 +43,7 @@ def main
   puts "Introduce la tasa media de llegadas"
   lamb = Float($stdin.readline())
   l_s = ls(miu, lamb)
-  l_q = ls(miu, lamb)
+  l_q = lq(miu, lamb)
   w_q = wq(miu, lamb)
   w_s = ws(miu, lamb)
   p = ro(miu, lamb)
