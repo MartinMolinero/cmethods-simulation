@@ -50,8 +50,8 @@ def main
   have_0_clients_system = have_n_clients_system(p, 0)
   cumulative = have_n_clients_system(p, 0) + have_n_clients_system(p, 1) + have_n_clients_system(p, 2) + have_n_clients_system(p, 3)
   have_queue_more_3 = 1- cumulative
-  wait_more_30_min_queue = clients_wait_queue_greater(p, miu, 30)
-  wait_more_30_min_system = clients_wait_system_greater(p,miu,30)
+  wait_more_30_min_queue = clients_wait_queue_greater(p, miu, 0.5)
+  wait_more_30_min_system = clients_wait_system_greater(p,miu,0.5)
   intersection = wait_more_30_min_queue * wait_more_30_min_system
 
   puts "Ls: #{l_s.to_s}"
