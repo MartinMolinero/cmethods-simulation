@@ -34,10 +34,8 @@ def clients_wait_system(ro, n)
   ro**(n+1.0)
 end
 
-
-
 def main
-  puts "Sistema de colas \n Bernardo Ortega Septien \n Bernardo Gomez Romero \n Martín Alejandro Molinero"
+  puts "Sistema de colas mm1 \n Bernardo Ortega Septien \n Bernardo Gomez Romero \n Martín Alejandro Molinero"
   puts "Introduce la tasa media de servicio"
   miu = Float($stdin.readline())
   puts "Introduce la tasa media de llegadas"
