@@ -11,7 +11,7 @@ class Integer
 end
 
 def lq(miu, lam, ro, s, p_0)
-  ((((lam / miu)**s) * p_0 * ro) / (s.fact * (1 - ro)))
+  ((((lam / miu)**s) * p_0 * ro) / (s.fact * (1 - ro)**2))
 end
 
 def wq(l_q, lam)
@@ -35,8 +35,8 @@ def have_0_clients_system(miu, lam, ro, s)
   for n in 0..(s - 1)
     x += ((lam / miu)**n) / n.fact
   end
-  y = ((lam / miu)**s) / (s.fact * (1 - ro))
-  1 / (x * y)
+  y = ((lam / miu)**s) / (s.fact * (1.0 - ro))
+  1.0 / (x + y)
 end
 
 def have_n_clients_system(miu, lam, ro, s, p_0, n)
@@ -69,7 +69,7 @@ def main
   puts "Lq: #{l_q.to_s}"
   puts "Wq: #{w_q.to_s}"
   puts "Ws: #{w_s.to_s}"
-  puts "Ws: #{p_n.to_s}"
+  puts "Probabilidad de n: #{p_n.to_s}"
 end
 
 main
