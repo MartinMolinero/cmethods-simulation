@@ -57,6 +57,10 @@ def main
   systems = Float($stdin.readline())
   puts "Introduce el numero de personas (n) para obtener probabilidad p(n): "
   n = Float($stdin.readline())
+  puts "Introduce el costo por sistema: "
+  cc = Float($stdin.readline())
+  puts "Introduce el costo por cola: "
+  cw = Float($stdin.readline())
   ro = ro(miu, lam, systems) # listo
   p_0 = have_0_clients_system(miu, lam, ro, systems)
   l_q = lq(miu, lam, ro, systems, p_0)
@@ -64,12 +68,17 @@ def main
   w_s = ws(w_q, miu)
   l_s = ls(lam, w_s)
   (n == 0) ? p_n = p_0 : p_n = have_n_clients_system(miu, lam, ro, systems, p_0, n)
+  cc_s = cc * systems
+  cw_ls = cw * l_s
+  cTotal = cc_s + cw_ls
 
+  puts "\nRo: #{ro.to_s}"
   puts "Ls: #{l_s.to_s}"
   puts "Lq: #{l_q.to_s}"
   puts "Wq: #{w_q.to_s}"
   puts "Ws: #{w_s.to_s}"
   puts "Probabilidad de n: #{p_n.to_s}"
+  puts "\nCosto Total: #{cTotal.to_s}"
 end
 
 main
