@@ -1,5 +1,6 @@
 from random import randint
 import sys
+import numpy as np
 
 def generate_empty_matrix(n):
     mat = []
@@ -7,7 +8,7 @@ def generate_empty_matrix(n):
         mat.append([0] * n)
     return mat
 
-def fill_with_binary(matrix, limit, n):
+def fill_with_binary_a(matrix, limit, n):
     counter = 0
     while(counter < limit):
         r1  = randint(0,n)
@@ -15,6 +16,17 @@ def fill_with_binary(matrix, limit, n):
         if( r1 != r2 and matrix[r1][r2] != 1):
             matrix[r1][r2] = 1
             counter+=1
+    return matrix
+
+def fill_with_binary_b(matrix, limit, n):
+    counter = 0
+    while(counter < limit):
+        r1  = randint(0,n)
+        r2 = randint(0,n)
+        if( r1 != r2 and matrix[r1][r2] != 1):
+            matrix[r1][r2] = 1
+            matrix[r2][r1] = 1
+            counter+=2
     return matrix
 
 def count_ones(matrix):
@@ -49,18 +61,31 @@ def matriz_a():
     perc = input("Introduce el porcentaje deseado\n")
     tam = n*n
     ones = round(tam * ( float(perc) / 100.0))
-    if (ones > ones-n):
-        print("No computable\n")
-        sys.exit(0)
+    
     print("P="+str(ones))
-    mat  = fill_with_binary(mat, ones, n-1)
-    print(mat)
+    mat  = fill_with_binary_a(mat, ones, n-1)
+    print(np.matrix(mat))
+    c_array = count_ones(mat)
+    max_and_min(c_array)
+
+
+def matriz_b():
+    n = input("Introduce el tamano de la matriz\n")
+    mat = generate_empty_matrix(n)
+    perc = input("Introduce el porcentaje deseado\n")
+    tam = n*n
+    ones = round(tam * ( float(perc) / 100.0))
+    
+    print("P="+str(ones))
+    mat  = fill_with_binary_b(mat, ones, n-1)
+    print(np.matrix(mat))
     c_array = count_ones(mat)
     max_and_min(c_array)
 
 
 def main():
     matriz_a()
+    matriz_b()
 
 if __name__ == "__main__":
     main()
