@@ -1,4 +1,5 @@
 from random import randint
+import sys
 
 def generate_empty_matrix(n):
     mat = []
@@ -42,13 +43,24 @@ def max_and_min(counters):
     print ("Min es " +  str(min) + " unos en la fila " + str(min_aux))
 
 
+def matriz_a():
+    n = input("Introduce el tamano de la matriz\n")
+    mat = generate_empty_matrix(n)
+    perc = input("Introduce el porcentaje deseado\n")
+    tam = n*n
+    ones = round(tam * ( float(perc) / 100.0))
+    if (ones > ones-n):
+        print("No computable\n")
+        sys.exit(0)
+    print("P="+str(ones))
+    mat  = fill_with_binary(mat, ones, n-1)
+    print(mat)
+    c_array = count_ones(mat)
+    max_and_min(c_array)
 
-n = input("Introduce el tamano de la matriz\n")
-mat = generate_empty_matrix(n)
-perc = input("Introduce el porcentaje deseado\n")
-tam = n*n
-ones = round(tam * ( float(perc) / 100.0))
-mat  = fill_with_binary(mat, ones, n-1)
-print(mat)
-c_array = count_ones(mat)
-max_and_min(c_array)
+
+def main():
+    matriz_a()
+
+if __name__ == "__main__":
+    main()
