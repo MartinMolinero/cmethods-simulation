@@ -1,12 +1,13 @@
 from random import randint
 import sys
-import numpy as np
-np.set_printoptions(threshold='nan')
+#import numpy as np
+#np.set_printoptions(threshold='nan')
 
 def generate_empty_matrix(n):
     mat = []
     for f in range(n):
         mat.append([0] * n)
+    #mat = np.zeros(shape=(n,n))
     return mat
 
 def fill_with_binary_a(matrix, limit, n):
@@ -52,41 +53,58 @@ def max_and_min(counters):
         elif(counters[i] < min):
             min = counters[i]
             min_aux = i
+    print ("\nMáximos y mínimos por fila:")
     print ("Max es " +  str(max) + " unos en la fila " + str(max_aux))
     print ("Min es " +  str(min) + " unos en la fila " + str(min_aux))
 
+def print_mat(matrix):
+    print('\n'.join([' '.join(['{:1}'.format(item) for item in row]) 
+      for row in matrix]))
+    
 
 def matriz_a():
-    n = input("Introduce el tamano de la matriz\n")
+    n = int(input("\nIntroduce el tamano de la matriz\n"))
     mat = generate_empty_matrix(n)
-    perc = input("Introduce el porcentaje deseado\n")
-    tam = n*n
-    ones = round(tam * ( float(perc) / 100.0))
+    perc = input("\nIntroduce el porcentaje deseado\n")
+    size = n*n
+    ones = round(size * ( float(perc) / 100.0))
     
-    print("P="+str(ones))
+    print("\nP="+str(ones))
     mat  = fill_with_binary_a(mat, ones, n-1)
-    print(np.matrix(mat))
+    #print(np.matrix(mat))
+    print("\nMatriz:")
+    print_mat(mat)
     c_array = count_ones(mat)
     max_and_min(c_array)
 
 
 def matriz_b():
-    n = input("Introduce el tamano de la matriz\n")
+    n = int(input("\nIntroduce el tamano de la matriz\n"))
     mat = generate_empty_matrix(n)
-    perc = input("Introduce el porcentaje deseado\n")
-    tam = n*n
-    ones = round(tam * ( float(perc) / 100.0))
+    perc = input("\nIntroduce el porcentaje deseado\n")
+    size = n*n
+    ones = round(size * ( float(perc) / 100.0))
     
-    print("P="+str(ones))
+    print("\nP="+str(ones))
     mat  = fill_with_binary_b(mat, ones, n-1)
-    print(np.matrix(mat))
+    #print(np.matrix(mat))
+    print("\nMatriz:\n")
+    print_mat(mat)
     c_array = count_ones(mat)
     max_and_min(c_array)
 
 
 def main():
-    matriz_a()
-    matriz_b()
+    while(True):
+        mat_name = str(input("\nIntroduce la matríz que desea generar: (a) ó (b), (0) para terminar.\n"))
+        if(mat_name == 'a' or mat_name == 'A'):
+            matriz_a()
+        elif(mat_name == 'b'or mat_name == 'B'):
+            matriz_b()
+        elif(mat_name == '0'):
+            break
+        else:
+            print("Valor introducido inválido, introducir (a), (b), o (0)")
 
 if __name__ == "__main__":
     main()
