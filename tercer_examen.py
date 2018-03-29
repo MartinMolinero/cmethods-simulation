@@ -1,6 +1,7 @@
 from random import randint
 import sys
 import numpy as np
+np.set_printoptions(threshold='nan')
 
 def generate_empty_matrix(n):
     mat = []
