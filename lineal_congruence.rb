@@ -3,7 +3,6 @@ def recursive_formula(a, z_param, c, m)
 end
 
 def r_value(z, m)
-  print "z/m" + z.to_s + m.to_s
   return Float(z) / Float(m)
 end
 
@@ -25,7 +24,7 @@ def main_formula
   r = r_value(z_i, m)
   z = z_i
   z_one = z_i
-  puts "\n\n-Iteration: 1 \n-Z: " + z.to_s + "\n-R: " +  r.to_s
+  puts "\n\n-Iteration: 1 \n Z: " + z_init.to_s + " \n-Zi + 1: " + z.to_s + "\n-R: " +  r.to_s
 
   #Rest of iterations
   for i in 2..(itr -1)
@@ -35,8 +34,8 @@ def main_formula
     break
     end
     r = r_value(z_i, m)
+    puts "\n\n-Iteration: " + i.to_s  + "\n-Z: " + z.to_s + "\n-Zi + 1: " + z_i.to_s + "\n-R: " +  r.to_s
     z = z_i
-    puts "\n\n-Iteration: " + i.to_s  + "\n-Z: " + z.to_s + "\n-R: " +  r.to_s
   end
 end
 
