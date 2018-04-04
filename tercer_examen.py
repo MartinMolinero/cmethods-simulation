@@ -63,7 +63,7 @@ def print_mat(matrix):
     
 
 def matriz_a():
-    n = int(input("\nIntroduce el tamano de la matriz\n"))
+    n = int(input("\nIntroduce el número de renglones/columnas de la matriz cuadrada\n"))
     mat = generate_empty_matrix(n)
     perc = input("\nIntroduce el porcentaje deseado\n")
     size = n*n
@@ -79,7 +79,7 @@ def matriz_a():
 
 
 def matriz_b():
-    n = int(input("\nIntroduce el tamano de la matriz\n"))
+    n = int(input("\nIntroduce el número de renglones/columnas de la matriz cuadrada\n"))
     mat = generate_empty_matrix(n)
     perc = input("\nIntroduce el porcentaje deseado\n")
     size = n*n
