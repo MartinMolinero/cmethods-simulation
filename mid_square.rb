@@ -19,7 +19,7 @@ def return_substring(number, n)
 end
 
 def method()
-  puts "Introduce la semilla"
+  puts "Introduce la semilla (x0)"
   number = Integer($stdin.readline(), 10)
   puts "Introduce las iteraciones"
   iter = Integer($stdin.readline(), 10)
@@ -28,7 +28,7 @@ def method()
     squared = square(number)
     squared = transform(squared, n)
     str = return_substring(squared.to_s, n)
-    print "\n Result: " + "." + str
+    print "\nZi-1: " + number.to_s + "\t(Zi-1)^2: " + squared.to_s + "\tZi: " + str + "\tResult: " + "." + str
     number = str.to_i
     iter = iter - 1
   end
