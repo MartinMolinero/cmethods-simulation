@@ -14,6 +14,10 @@ def lq(wq, lam)
   lam * wq
 end
 
+def p(lam, miu, s)
+  lam/(miu*s)
+end
+
 def main
   puts "Sistema de colas - Ley de Little \n Bernardo Ortega Septien \n Bernardo Gomez Romero \n Martín Alejandro Molinero"
   puts "Introduce la tasa media de servicio (miu): "
@@ -26,11 +30,13 @@ def main
   l_q = lq(w_q, lamb)
   l_s = ls_1(w_s, lamb)
   # l_s = ls_2(ws, lamb)
-  
+  ro = p(lamb, miu, 1)
+
   puts "Ls: #{l_s.to_s}"
   puts "Lq: #{l_q.to_s}"
   puts "Wq: #{w_q.to_s}"
   puts "Ws: #{w_s.to_s}"
+  puts "Ro con 1 servidor #{ro.to_s}"
 
 end
 main
