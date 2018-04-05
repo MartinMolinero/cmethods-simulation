@@ -19,7 +19,7 @@ def return_substring(number, n)
 end
 
 def method()
-  puts "Introduce la semilla (x0)"
+  puts "Introduce la semilla (Z0)"
   number = Integer($stdin.readline(), 10)
   puts "Introduce las iteraciones"
   iter = Integer($stdin.readline(), 10)
