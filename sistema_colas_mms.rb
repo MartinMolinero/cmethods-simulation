@@ -49,17 +49,17 @@ end
 
 def main
   puts "Sistema de colas MMS\n Bernardo Ortega Septien \n Bernardo Gomez Romero \n Martin Alejandro Molinero"
-  puts "Introduce la tasa media de servicio: "
+  puts "Introduce la tasa media de servicio (miu):  "
   miu = Float($stdin.readline())
-  puts "Introduce la tasa media de llegadas: "
+  puts "Introduce la tasa media de llegadas (lambda):  "
   lam = Float($stdin.readline())
-  puts "Introduce el numero de sistemas: "
+  puts "Introduce el numero de servidores: "
   systems = Float($stdin.readline())
   puts "Introduce el numero de personas (n) para obtener probabilidad p(n): "
   n = Float($stdin.readline())
-  puts "Introduce el costo por sistema: "
+  puts "Introduce el costo por servidor: "
   cc = Float($stdin.readline())
-  puts "Introduce el costo por cola: "
+  puts "Introduce el costo por cola (espera): "
   cw = Float($stdin.readline())
   ro = ro(miu, lam, systems) # listo
   p_0 = have_0_clients_system(miu, lam, ro, systems)
@@ -78,6 +78,8 @@ def main
   puts "Wq: #{w_q.to_s}"
   puts "Ws: #{w_s.to_s}"
   puts "Probabilidad de n: #{p_n.to_s}"
+  puts "Costo de servicio (servidores) #{cc_s.to_s}"
+  puts "Costo de espera #{cw_ls.to_s}"
   puts "\nCosto Total: #{cTotal.to_s}"
 end
 

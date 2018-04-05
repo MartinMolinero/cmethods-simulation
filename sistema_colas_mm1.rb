@@ -19,26 +19,30 @@ def ro(miu, lam)
 end
 
 def have_n_clients_system(ro, n)
+  #tener n clientes en el sistema pn=formula
   (1.0-ro)*(ro**n)
 end
 
 def clients_wait_queue_greater(ro, miu, t)
+  #probabilidad de que el tiempo de espera en la fila sea mayor a un t dado
   ro*Math.exp(-miu*(1.0-ro)*t)
 end
 
 def clients_wait_system_greater(ro, miu, t)
+  #probabilidad de que el tiempo de espera en el sistema sea mayor a un t dado
   Math.exp(-miu*(1.0-ro)*t)
 end
 
-def clients_wait_system(ro, n)
+def clients_being_system(ro, n)
+  #probabilidad de que el numero de clientes en el sistema sea mayor a n
   ro**(n+1.0)
 end
 
 def main
   puts "Sistema de colas mm1 \n Bernardo Ortega Septien \n Bernardo Gomez Romero \n Martín Alejandro Molinero"
-  puts "Introduce la tasa media de servicio"
+  puts "Introduce la tasa media de servicio miu"
   miu = Float($stdin.readline())
-  puts "Introduce la tasa media de llegadas"
+  puts "Introduce la tasa media de llegadas lambda"
   lamb = Float($stdin.readline())
   l_s = ls(miu, lamb)
   l_q = lq(miu, lamb)
@@ -56,6 +60,7 @@ def main
   puts "Lq: #{l_q.to_s}"
   puts "Wq: #{w_q.to_s}"
   puts "Ws: #{w_s.to_s}"
+  puts "Ro (p): #{p.to_s}"
 
   puts "Probabilidad de tener 0 clientes #{have_0_clients_system.to_s}"
   puts "Probabilidad de tener cola mayor a 3 #{have_queue_more_3.to_s}"
