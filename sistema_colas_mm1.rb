@@ -55,6 +55,8 @@ def main
   wait_more_30_min_queue = clients_wait_queue_greater(p, miu, 0.5)
   wait_more_30_min_system = clients_wait_system_greater(p,miu,0.5)
   intersection = wait_more_30_min_queue * wait_more_30_min_system
+  have_1_client_queue = have_n_clients_system(p, 1)
+  have_more_than_2_clients = clients_being_system(p, 2)
 
   puts "Ls: #{l_s.to_s}"
   puts "Lq: #{l_q.to_s}"
@@ -67,5 +69,8 @@ def main
   puts "Probabilidad de esperar +30 min en cola #{wait_more_30_min_queue.to_s}"
   puts "Probabilidad de esperar +30 min en cola #{wait_more_30_min_system.to_s}"
   puts "Interseccion anterior #{intersection.to_s}"
+
+  puts "Probabilidad de tener un auto haciendo fila #{have_1_client_queue.to_s}"
+  puts "Probabilida de tener mas de 2 autos en el sistema #{have_more_than_2_clients.to_s}"
 end
 main

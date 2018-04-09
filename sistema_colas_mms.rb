@@ -54,6 +54,7 @@ def main
   puts "Introduce la tasa media de llegadas (lambda):  "
   lam = Float($stdin.readline())
   puts "Introduce el numero de servidores: "
+  #cambiar número de servidores si pide evaluar costo con ellos para ver cual conviene más
   systems = Float($stdin.readline())
   puts "Introduce el numero de personas (n) para obtener probabilidad p(n): "
   n = Float($stdin.readline())
@@ -81,6 +82,10 @@ def main
   puts "Costo de servicio (servidores) #{cc_s.to_s}"
   puts "Costo de espera #{cw_ls.to_s}"
   puts "\nCosto Total: #{cTotal.to_s}"
+
+  puts "Probabilidad de que no lleguen solicitudes #{}"
+  puts "Probabilidad de que lleguen 3 solicitudes #{}"
+  puts "Probabilidad de que lleguen 7 solicitudes #{}"
 end
 
 main
