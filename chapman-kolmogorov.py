@@ -8,7 +8,7 @@ def main():
     matrix = matrix.dot(matrix)
   print("\nMatrix:")
   print(matrix)
-  vector = matrix.dot(vector)
+  vector = vector.dot(matrix)
   print("\nVector:")
   print(vector)
     
