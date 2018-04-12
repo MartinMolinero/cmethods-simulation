@@ -1,11 +1,15 @@
 import numpy as np
 
 def main():
-  matrix = np.loadtxt('matrix.txt')
-  print(matrix)
+  vector = np.loadtxt('chapman-k-vector.txt')
+  matrix = np.loadtxt('chapman-k-matrix.txt')
   n = int(input("Introduce número de transiciones: "))
-  for i in range (1, n):
+  for i in range (0, n):
     matrix = matrix.dot(matrix)
+  print("\nMatrix:")
   print(matrix)
+  vector = matrix.dot(vector)
+  print("\nVector:")
+  print(vector)
     
 main()
