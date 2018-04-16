@@ -1,5 +1,8 @@
 import math
 
+def e_power(exponent):
+    return math.exp(exponent)
+
 def rh(rh_prev, miuh, rohi, ihi, gamahi):
     return (rh_prev*math.exp(miuh)*math.exp(rohi)) + (ihi*math.exp(miuh)*(1-math.exp(gamahi)))
 
@@ -16,10 +19,15 @@ def nh_2_next_time(nh):
     return nh
 
 def iFun(sLast, iLast, beta, gama, miu):
-	return sLast * e_power(-miu) * (1 - e_power(-(beta * iLast))) + (iLast * e_power(-miu) * e_power(-gama))
+	return (sLast * e_power(-miu) * (1 - e_power(-(beta * iLast))) + (iLast * e_power(-miu) * e_power(-gama)))
+    
+def s_h(g_h, miu, beta, ro, prev_I, prev_S, prev_R):
+    return (g_h + 
+            (e_power(-miu) * e_power(beta * prev_I) * prev_S) + 
+            (prev_R * e_power(-miu) * (1 - e_power(-ro))) )
 
 def main():
-h = int(input("Introduce el número de poblaciones (h): "))
+    h = int(input("Introduce el número de poblaciones (h): "))
 
 	for i in range(1,h):
 		n = int(input("Introduce el número inicial de individuos de la población: "))
@@ -34,8 +42,9 @@ h = int(input("Introduce el número de poblaciones (h): "))
 		rArray = [0]
 
 		for t in range(1, 150):
-			sArray.push(sFun)
+			sArray.push(sFun())
 			iArray.push(iFun(sArray[t - 1], iArray[t - 1], beta, gama, miu))
+			rArray.push(rFun())
 
 main()
 
