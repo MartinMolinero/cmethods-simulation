@@ -11,18 +11,20 @@ def nh_next_time(rh, miuh, nht, ch):
             (math.exp(miuh) * nht))
 
 def gh_2(miuh, nh):
-    return (1- math.exp(miuh) * nh)
+    gh =  (1 - e_power(-miuh)) * nh
+    return gh
 
 def nh_2_next_time(nh):
     return nh
 
 def iFun(sLast, iLast, beta, gama, miu):
-	return (sLast * e_power(-miu) * (1 - e_power(-(beta * iLast))) + (iLast * e_power(-miu) * e_power(-gama)))
+	i = (sLast) * (e_power(-miu)) * (1 - e_power(-(beta * iLast))) + (iLast * e_power(-miu) * e_power(-gama))
+	return i
     
 def sFun(g_h, miu, beta, rho, prev_I, prev_S, prev_R):
     return (g_h + 
-            (e_power(-miu) * e_power(beta * prev_I) * prev_S) + 
-            (prev_R * e_power(-miu) * (1 - e_power(-rho))) )
+            (e_power(-miu) * e_power(-(beta * prev_I)) * prev_S) + 
+            (prev_R * e_power(-miu) * (1 - e_power(-rho))))
     
 def rFun(prev_R, miuh, rohi, prev_I, gamahi):
     return (prev_R*math.exp(miuh)*math.exp(rohi)) + (prev_I*math.exp(miuh)*(1-math.exp(gamahi)))
@@ -39,9 +41,9 @@ def main():
         beta = float(input("Introduce el factor beta: "))
         gamma = float(input("Introduce el factor gamma: "))
 
-        sArray = [0]
-        iArray = [0]
-        rArray = [0]
+        sArray = [0.0]
+        iArray = [0.0]
+        rArray = [0.0]
         
         for t in range(1, 150):
             #n = nh_next_time(rho, miu, n, ch)
@@ -51,8 +53,11 @@ def main():
             iArray.append(iFun(sArray[t - 1], iArray[t - 1], beta, gamma, miu))
             rArray.append(rFun(rArray[t - 1], miu, rho, iArray[t - 1], gamma))
             
+        print("\n")
         print(sArray)
+        print("\n")
         print(iArray)
+        print("\n")
         print(rArray)
 
 main()
