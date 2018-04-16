@@ -17,7 +17,6 @@ def nh_2_next_time(nh):
     return nh
 
 def iFun():
-	
 	i = s * e_power(-miu) * (1 - e_power())
 
 
