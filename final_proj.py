@@ -30,25 +30,30 @@ def rFun(prev_R, miuh, rohi, prev_I, gamahi):
 
 def main():
     h = int(input("Introduce el número de poblaciones (h): "))
+    
+    for i in range(0,h):
+        n = int(input("Introduce el número inicial de individuos de la población: "))
+        #ch = int(input("Introduce ch: "))
+        miu = float(input("Introduce el factor miu (probabilidad de mortalidad del virus): "))
+        rho = float(input("Introduce el factor rho: "))
+        beta = float(input("Introduce el factor beta: "))
+        gamma = float(input("Introduce el factor gamma: "))
 
-	for i in range(1,h):
-		n = int(input("Introduce el número inicial de individuos de la población: "))
-		ch = int(input("Introduce ch: "))
-		miu = int(input("Introduce el factor miu (probabilidad de mortalidad del virus): "))
-		rho = int(input("Introduce el factor rho: "))
-		beta = int(input("Introduce el factor beta: "))
-		gamma = int(input("Introduce el factor gamma: "))
-
-		sArray = [0]
-		iArray = [0]
-		rArray = [0]
-
-		for t in range(1, 150):
-            n = nh_next_time(rho, miu, n, ch)
-            g = gh_1(rho, miu, n, ch)
-            sArray.push(sFun(g, miu, beta, rho, iArray[t - 1], sArray[t - 1], rArray[t - 1]))
-            iArray.push(iFun(sArray[t - 1], iArray[t - 1], beta, gama, miu))
-            rArray.push(rFun(rArray[t - 1], miu, rho, iArray[t - 1], gama))
+        sArray = [0]
+        iArray = [0]
+        rArray = [0]
+        
+        for t in range(1, 150):
+            #n = nh_next_time(rho, miu, n, ch)
+            #g = gh_1(rho, miu, n, ch)
+            g = gh_2(miu, n)
+            sArray.append(sFun(g, miu, beta, rho, iArray[t - 1], sArray[t - 1], rArray[t - 1]))
+            iArray.append(iFun(sArray[t - 1], iArray[t - 1], beta, gamma, miu))
+            rArray.append(rFun(rArray[t - 1], miu, rho, iArray[t - 1], gamma))
+            
+        print(sArray)
+        print(iArray)
+        print(rArray)
 
 main()
 
