@@ -16,6 +16,11 @@ def gh_2(miuh, nh):
 def nh_2_next_time(nh):
     return nh
 
+def iFun():
+	
+	i = s * e_power(-miu) * (1 - e_power())
+
+
 def main():
 h = int(input("Introduce el número de poblaciones (h): "))
 
@@ -31,7 +36,7 @@ h = int(input("Introduce el número de poblaciones (h): "))
 		rArray = [0]
 
 		for t in range(1, 150):
-			i = s * e_power(-miu) * 
+			
 
 main()
 
