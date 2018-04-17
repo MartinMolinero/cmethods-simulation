@@ -18,7 +18,7 @@ def nh_2_next_time(nh):
     return nh
 
 def iFun(sLast, iLast, beta, gama, miu):
-	i = (sLast) * (e_power(-miu)) * (1 - e_power(-(beta * iLast))) + (iLast * e_power(-miu) * e_power(-gama))
+	i = (sLast * (e_power(-miu)) * (1 - e_power(-(beta * iLast)))) + (iLast * e_power(-miu) * e_power(-gama))
 	return i
     
 def sFun(g_h, miu, beta, rho, prev_I, prev_S, prev_R):
@@ -46,8 +46,8 @@ def main():
         beta = float(input("Introduce el factor beta: "))
         gamma = float(input("Introduce el factor gamma: "))
 
-        sArray = [150.0]
-        iArray = [50.0]
+        sArray = [n - 1]
+        iArray = [1.0]
         rArray = [0.0]
         
         for t in range(1, 150):
@@ -64,6 +64,6 @@ def main():
         print(iArray)
         print("\n")
         print(rArray)
-
+        
 main()
 
