@@ -64,6 +64,10 @@ def main():
         print(iArray)
         print("\n")
         print(rArray)
-        
+
 main()
+
+#*
+
+
 
