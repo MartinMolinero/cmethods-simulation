@@ -1,6 +1,8 @@
 import math
-import numpy as np
+import sys
+#sys.path.append("/Users/BernardoOrtega/anaconda/lib/python3.5/site-packages")
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def e_power(exponent):
@@ -112,7 +114,7 @@ def main():
         print (temp_array_100)
         print (temp_array_150)
         '''
-        plt.plot(indexes, sArray, 'r--', indexes, iArray, 'bs', indexes, rArray, 'g^')
+        plt.plot(indexes, sArray, 'r', indexes, iArray, 'b', indexes, rArray, 'g')
         #plt.plot(indexes, sArray, 'ro')
         #plt.plot(indexes, iArray, 'bs')
         #plt.plot(indexes, rArray, 'g^')
