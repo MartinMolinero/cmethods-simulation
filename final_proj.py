@@ -52,18 +52,22 @@ def main():
         sArray = [n - 1]
         iArray = [1.0]
         rArray = [0.0]
-
+        indexes = []
         for t in range(1, 150):
             #n = nh_next_time(rho, miu, n, ch)
             #g = gh_1(rho, miu, n, ch)
             g = gh_2(miu, n)
+
             sArray.append(sFun(g, miu, beta, rho, iArray[t - 1], sArray[t - 1], rArray[t - 1]))
             iArray.append(iFun(sArray[t - 1], iArray[t - 1], beta, gamma, miu))
             rArray.append(rFun(rArray[t - 1], miu, rho, iArray[t - 1], gamma))
+            indexes.append(t)
+        indexes.append(150)
 
         first_index = 50
         second_index = 100
         third_index = 150
+        '''
         temp_array_50 = []
         temp_array_50.append(sArray[first_index -1])
         temp_array_50.append(iArray[first_index -1])
@@ -107,14 +111,15 @@ def main():
         print (temp_array_50)
         print (temp_array_100)
         print (temp_array_150)
-        #esto sería para graficar arreglos temporales de s, i , r en los tiempos 50, 100, 150
-        #plt.plot([first_index, second_index, third_index], temp_s, 'ro')
-        #plt.plot([first_index, second_index, third_index], temp_i, 'bs')
-        #plt.plot([first_index, second_index, third_index], temp_r, 'g^')
+        '''
+        plt.plot(indexes, sArray, 'r--', indexes, iArray, 'bs', indexes, rArray, 'g^')
+        #plt.plot(indexes, sArray, 'ro')
+        #plt.plot(indexes, iArray, 'bs')
+        #plt.plot(indexes, rArray, 'g^')
         #esto es para graficar los tres valores de s, i, r en los tiempos 50, 100, 150 por separado
-        plt.plot([first_index, second_index, third_index], temp_array_50, 'b^')
-        plt.plot([first_index, second_index, third_index], temp_array_100, 'go')
-        plt.plot([first_index, second_index, third_index], temp_array_150, 'gs')
+        #plt.plot([first_index, second_index, third_index], temp_array_50, 'b^')
+        #plt.plot([first_index, second_index, third_index], temp_array_100, 'go')
+        #plt.plot([first_index, second_index, third_index], temp_array_150, 'gs')
         # red dashes, blue squares and green triangles
         plt.show()
 main()
