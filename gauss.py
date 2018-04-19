@@ -3,23 +3,23 @@ import numpy as np
 def GEPP(A, b, doPricing = True):
     '''
     Gaussian elimination with partial pivoting.
-    
+
     input: A is an n x n numpy matrix
            b is an n x 1 numpy array
-    output: x is the solution of Ax=b 
-            with the entries permuted in 
-            accordance with the pivoting 
+    output: x is the solution of Ax=b
+            with the entries permuted in
+            accordance with the pivoting
             done by the algorithm
     post-condition: A and b have been modified.
     '''
     n = len(A)
-    if b.size != n:
+    if len(b)!= n:
         raise ValueError("Invalid argument: incompatible sizes between"+
                          "A & b.", b.size, n)
-    # k represents the current pivot row. Since GE traverses the matrix in the 
-    # upper right triangle, we also use k for indicating the k-th diagonal 
+    # k represents the current pivot row. Since GE traverses the matrix in the
+    # upper right triangle, we also use k for indicating the k-th diagonal
     # column index.
-    
+
     # Elimination
     for k in range(n-1):
         if doPricing:
@@ -48,5 +48,5 @@ def GEPP(A, b, doPricing = True):
 if __name__ == "__main__":
     A = np.array([[1.,-1.,1.,-1.],[1.,0.,0.,0.],[1.,1.,1.,1.],[1.,2.,4.,8.]])
     b =  np.array([[14.],[4.],[2.],[2.]])
-    print GEPP(np.copy(A), np.copy(b), doPricing = False)
-    print GEPP(A,b)
+    print(GEPP(np.copy(A), np.copy(b), doPricing = False))
+    print(GEPP(A,b))
