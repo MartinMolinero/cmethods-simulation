@@ -1,4 +1,9 @@
 import math
+import sys
+#sys.path.append("/Users/BernardoOrtega/anaconda/lib/python3.5/site-packages")
+import matplotlib.pyplot as plt
+import numpy as np
+
 
 def e_power(exponent):
     return math.exp(exponent)
@@ -18,26 +23,26 @@ def nh_2_next_time(nh):
     return nh
 
 def iFun(sLast, iLast, beta, gama, miu):
-	i = (sLast) * (e_power(-miu)) * (1 - e_power(-(beta * iLast))) + (iLast * e_power(-miu) * e_power(-gama))
+	i = (sLast * (e_power(-miu)) * (1 - e_power(-(beta * iLast)))) + (iLast * e_power(-miu) * e_power(-gama))
 	return i
-    
+
 def sFun(g_h, miu, beta, rho, prev_I, prev_S, prev_R):
-    s = (g_h + 
-            (e_power(-miu) * e_power(-(beta * prev_I)) * prev_S) + 
+    s = (g_h +
+            (e_power(-miu) * e_power(-(beta * prev_I)) * prev_S) +
             (prev_R * e_power(-miu) * (1 - e_power(-rho))))
 
 
     #miu = 7.8693
 
     return s
-    
+
 def rFun(prev_R, miuh, rohi, prev_I, gamahi):
     return (prev_R * e_power(-miuh) * e_power(-rohi)) + (prev_I * e_power(-miuh) * (1 - e_power(-gamahi)))
 
 
 def main():
     h = int(input("Introduce el número de poblaciones (h): "))
-    
+
     for i in range(0,h):
         n = float(input("Introduce el número inicial de individuos de la población: "))
         if(i == 0):
@@ -63,12 +68,8 @@ def main():
             iArray.append(iFun(sArray[i][t - 1], iArray[i][t - 1], beta, gamma, miu))
             rArray.append(rFun(rArray[i][t - 1], miu, rho, iArray[i][t - 1], gamma))
 
-        print("\n")
-        print(sArray)
-        print("\n")
-        print(iArray)
-        print("\n")
-        print(rArray)
-
+        plt.plot(indexes, sArray, 'r', indexes, iArray, 'b', indexes, rArray, 'g')
+        plt.show()
 main()
 
+#*
