@@ -20,7 +20,11 @@ def split_lines_to_actions(input, start, end):
     subarray = []
     return input[start:end]
 
-def distribute_formula(policies_matrices, r_matrices, alfa):
+def distribute_formula(policies_matrices, c_values, alfa):
+    matrix = []
+    for i,row in enumerate(policies_matrices):
+        temp_row = []
+        temp_value =  c_values[i] + ()
 
     pass
 
