@@ -40,23 +40,28 @@ def main():
     
     for i in range(0,h):
         n = float(input("Introduce el número inicial de individuos de la población: "))
-        #ch = int(input("Introduce ch: "))
+        if(i == 0):
+            # ch tiene que ser un número mayor que n
+            ch = int(input("Introduce ch: "))
         miu = float(input("Introduce el factor miu (probabilidad de mortalidad del virus): "))
         rho = float(input("Introduce el factor rho: "))
         beta = float(input("Introduce el factor beta: "))
         gamma = float(input("Introduce el factor gamma: "))
 
-        sArray = [150.0]
-        iArray = [50.0]
-        rArray = [0.0]
+        sArray = [i][150.0]
+        iArray = [i][50.0]
+        rArray = [i][0.0]
         
         for t in range(1, 150):
-            #n = nh_next_time(rho, miu, n, ch)
-            #g = gh_1(rho, miu, n, ch)
-            g = gh_2(miu, n)
-            sArray.append(sFun(g, miu, beta, rho, iArray[t - 1], sArray[t - 1], rArray[t - 1]))
-            iArray.append(iFun(sArray[t - 1], iArray[t - 1], beta, gamma, miu))
-            rArray.append(rFun(rArray[t - 1], miu, rho, iArray[t - 1], gamma))
+            if(i == 0):
+                n = nh_next_time(rho, miu, n, ch)
+                g = gh_1(rho, miu, n, ch)
+            else:
+                g = gh_2(miu, n)
+            
+            sArray.append(sFun(g, miu, beta, rho, iArray[i][t - 1], sArray[i][t - 1], rArray[i][t - 1]))
+            iArray.append(iFun(sArray[i][t - 1], iArray[i][t - 1], beta, gamma, miu))
+            rArray.append(rFun(rArray[i][t - 1], miu, rho, iArray[i][t - 1], gamma))
 
         print("\n")
         print(sArray)
