@@ -1,5 +1,50 @@
 import numpy as np
-from gauss import GEPP
+
+def GEPP(A, b, doPricing = True):
+    '''
+    Gaussian elimination with partial pivoting.
+
+    input: A is an n x n numpy matrix
+           b is an n x 1 numpy array
+    output: x is the solution of Ax=b 
+            with the entries permuted in 
+            accordance with the pivoting 
+            done by the algorithm
+    post-condition: A and b have been modified.
+    '''
+
+    n = len(A)
+    if b.size != n:
+        raise ValueError("Invalid argument: incompatible sizes between"+
+                         "A & b.", b.size, n)
+    # k represents the current pivot row. Since GE traverses the matrix in the 
+    # upper right triangle, we also use k for indicating the k-th diagonal 
+    # column index.
+
+    # Elimination
+    for k in range(n-1):
+        if doPricing:
+            # Pivot
+            maxindex = abs(A[k:,k]).argmax() + k
+            if A[maxindex, k] == 0:
+                raise ValueError("Matrix is singular.")
+            # Swap
+            if maxindex != k:
+                A[[k,maxindex]] = A[[maxindex, k]]
+                b[[k,maxindex]] = b[[maxindex, k]]
+        else:
+            if A[k, k] == 0:
+                raise ValueError("Pivot element is zero. Try setting doPricing to True.")
+        #Eliminate
+        for row in range(k+1, n):
+            multiplier = A[row,k]/A[k,k]
+            A[row, k:] = A[row, k:] - multiplier*A[k, k:]
+            b[row] = b[row] - multiplier*b[k]
+    # Back Substitution
+    x = np.zeros(n)
+    for k in range(n-1, -1, -1):
+        x[k] = (b[k] - np.dot(A[k,k+1:],x[k+1:]))/A[k,k]
+    return x
 
 def compare_policies(improved_policies, max_min):
     policy = []
@@ -20,10 +65,12 @@ def improve_policy(probabilities_matrices, alfa, c_values, v_values):
     improved = []
 
     for i in range(len(probabilities_matrices)):
-        for j in range(probabilities_matrices[i]):
+        for j in range(len(probabilities_matrices[i])):
             temp = 0
             multi_temp = 0
-            for k in range(v_values):
+            for k in range(len(v_values)):
+                print(probabilities_matrices[i][j])
+                print(v_values[i][j])
                 multi_temp += (probabilities_matrices[i][j][k] * v_values[i][j][k])
             temp = c[i][k] + (alfa * multi_temp)
         improved.append(temp)
@@ -38,8 +85,7 @@ def get_cs(probabilities_matrices, r_matrices, states):
         for k in range(states):
             #print(r_matrices[i][j][k])
             temp_c += float(probabilities_matrices[j][k]) *  float(r_matrices[j][k])
-        c_i.append(temp_c)
-    print(temp_c,float(probabilities_matrices[j][k]) , float(r_matrices[j][k]))
+        c_i.append([temp_c])
     return c_i
 
 def lines_to_matrix(input, start, end):
@@ -65,7 +111,7 @@ def distribute_formula(probabilities_matrices, alfa):
             #print(probabilities_matrices[i][j])
             temp_value =  float(probabilities_matrices[i][j]) * alfa
             if i == j:
-                temp_value = 1 - temp_value
+                temp_value = 1 + temp_value
             temp_row.append(temp_value)
         #print(temp_row)
         matrix.append(temp_row)
@@ -80,13 +126,14 @@ def main():
     states = int(lines[0])
     actions = int(lines[1])
     alfa = -float(lines[2])
+    policy = [int(i) for i in lines[3].split(' ')] 
     input = []
     v_matrix = []
     improved_policies = []
     k_matrix  = [[-1,-1,-1]]
 
     for i,line in enumerate(lines):
-        if i >2:
+        if i >3:
             line = str(line).rstrip()
             input.append(line)
 
@@ -101,7 +148,7 @@ def main():
 
     probabilities_matrices = []
     r_matrices = []
-
+    iteration = 0;
     while True:
         for i,states_row in enumerate(states_info_array):
             probabilities_matrices.append(lines_to_matrix(states_info_array[i], 0,states))
@@ -111,21 +158,44 @@ def main():
 
         for i in range(actions):
             cs.append(get_cs(probabilities_matrices[i], r_matrices[i], states))
-        print(cs)
+
+        #cprint(probabilities_matrices)
+
+        policy_probs = []
+        policy_cs = []
+        for i in range(len(policy)):
+            policy_probs.append(probabilities_matrices[policy[i] - 1][i])
+            policy_cs.append(cs[policy[i] - 1][i])
+
+        print(policy_probs)
+        print(policy_cs)
         distributed_matrices = []
+
+        '''
         for i in range(actions):
             matrix = distribute_formula(probabilities_matrices[i], alfa)
             distributed_matrices.append(matrix)
+        '''
 
-        print(distributed_matrices)
+        distributed_matrices = distribute_formula(policy_probs, alfa)
+        #distributed_matrices.append(makeatrix)
+
         #make gauss jordan shit
 
-        for i in range(len(distributed_matrices)):
-            #hacer que gauss jordan regrese las v(i)
-            vs = GEPP(distributed_matrices, cs)
-            v_matrix.append(vs)
-            #solo sacar v_matrix[-1], v_matrix[-2]
-        improved_policies.append(improve_policy(probabilities_matrices, alfa, c_values, v_values))
+        # transform to np 
+        distributed_matrices = np.array(distributed_matrices)
+        policy_cs = np.array(policy_cs)
+
+        print(distributed_matrices)
+        print(policy_cs)
+
+        #hacer que gauss jordan regrese las v(i)
+        vs = GEPP(distributed_matrices, policy_cs)
+        #solo sacar v_matrix[-1], v_matrix[-2]
+
+        print(vs)
+
+        improved_policies.append(improve_policy(probabilities_matrices, alfa, cs, vs))
         #assuming that we have an array of v's having [[v11, v21, v31], [v12, v22, v32]] this method should work
         k_matrix.append(compare_policies(improved_policies))
 
