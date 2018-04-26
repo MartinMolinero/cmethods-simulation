@@ -41,7 +41,7 @@ def main():
     debug_mode = True
     
     if debug_mode:
-        h = 2
+        h = 1
         T = 40
     else:    
         h = int(input("Introduce el número de poblaciones (h): "))
@@ -61,6 +61,7 @@ def main():
                 ch = 1100
             miu = 0.4
             rho = 0.6
+            r = 3
             beta = 0.5
             gamma = 0.4
         else:
@@ -69,6 +70,7 @@ def main():
                 ch = int(input("Introduce ch (mayor que n): "))
             miu = float(input("Introduce el factor miu (probabilidad de mortalidad del virus): "))
             rho = float(input("Introduce el factor rho: "))
+            r = float(input("Introduce el factor r: "))
             beta = float(input("Introduce el factor beta: "))
             gamma = float(input("Introduce el factor gamma: "))
             
@@ -81,8 +83,8 @@ def main():
         indexes = []
         for t in range(1, T):
             if(i == 0):
-                n = nh_1_next_time(rho, miu, n, ch)
-                g = gh_1(rho, miu, n, ch)
+                n = nh_1_next_time(r, miu, n, ch)
+                g = gh_1(r, miu, n, ch)
             else:
                 g = gh_2(miu, n)
                 
@@ -99,5 +101,3 @@ def main():
         print("\n")        
     
 main()
-
-#*
