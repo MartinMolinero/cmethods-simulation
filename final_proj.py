@@ -39,15 +39,15 @@ def rFun(prev_R, miuh, rohi, prev_I, gamahi):
 def main():
     # debug_mode = false para pedir inputs a usuario
     debug_mode = True
-    
+
     if debug_mode:
         h = 2
         T = 40
-    else:    
+    else:
         h = int(input("Introduce el número de poblaciones (h): "))
         # T = 150
         T = int(input("Introduce el periodo de tiempo a simular (T): "))
-    
+
     # Fill arrays with ceros
     sArray = [[0.0 for i in range(T)] for i in range(h)]
     iArray = [[0.0 for i in range(T)] for i in range(h)]
@@ -71,13 +71,13 @@ def main():
             rho = float(input("Introduce el factor rho: "))
             beta = float(input("Introduce el factor beta: "))
             gamma = float(input("Introduce el factor gamma: "))
-            
-        
+
+
 
         sArray[i][0] = (n - 1)
         iArray[i][0] = 1.0
         rArray[i][0] = 0.0
-        
+
         indexes = []
         for t in range(1, T):
             if(i == 0):
@@ -85,19 +85,19 @@ def main():
                 g = gh_1(rho, miu, n, ch)
             else:
                 g = gh_2(miu, n)
-                
+
             sArray[i][t] = (sFun(g, miu, beta, rho, iArray[i][t - 1], sArray[i][t - 1], rArray[i][t - 1]))
             iArray[i][t] = (iFun(sArray[i][t - 1], iArray[i][t - 1], beta, gamma, miu))
             rArray[i][t] = (rFun(rArray[i][t - 1], miu, rho, iArray[i][t - 1], gamma))
             indexes.append(t)
         indexes.append(T)
-        
+
         print("\nResultados de la población "+ str(i+1))
+        print("Rojo = Susceptibles\t Azul = Infectados \t Verde = Recuperados")
         plt.plot(indexes, sArray[i], 'r', indexes, iArray[i], 'b', indexes, rArray[i], 'g')
         plt.show()
-        print("Rojo = Suseptibles \t Azul = Infectados \t Verde = Recuperados")
-        print("\n")        
-    
+        print("\n")
+
 main()
 
 #*
